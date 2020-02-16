@@ -4,9 +4,9 @@ public:
     unordered_map < int , int > mp ;
     vector < int > v ;
     RandomizedSet() {
-
+      
     }
-
+    
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     bool insert(int val) {
         if(mp.find(val)!=mp.end()) return false ;
@@ -14,19 +14,19 @@ public:
         mp[val] = v.size()-1 ;
         return true ;
     }
-
+    
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     bool remove(int val) {
         if(mp.find(val)==mp.end()) return false ;
         int i = mp[val];
         mp.erase(val);
         swap(v[i],v[v.size()-1]);
-        v.pop_back();
-        if(v.size()>0)
+        if(i<v.size()-1)
             mp[v[i]] = i ;
+        v.pop_back();
         return true ;
     }
-
+    
     /** Get a random element from the set. */
     int getRandom() {
         int sz = v.size() ;
